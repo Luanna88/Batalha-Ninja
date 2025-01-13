@@ -97,3 +97,5 @@ public void deveAtualizarOChakraDoOponenteDeAcordoComODanoDoJutsoQuandoAtacar() 
     - deveRetornarPrimeiroNinjaComoVencedorQuandoONomeForItachi
     - deveRetornarSegundoNinjaComoVencedorQuandoONomeForItachi
     - deveRetornarPrimeiroNinjaComoVencedorQuandoEmpatar
+
+OBS: APLICAÇÃO CRIADA USANDO O JDK 8, E JUNIT 4.
