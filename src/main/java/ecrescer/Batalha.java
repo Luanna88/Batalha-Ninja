@@ -6,14 +6,11 @@ public class Batalha {
         if (isInvalidNinja(primeiroNinja) && isInvalidNinja(segundoNinja)) {
             return primeiroNinja;
         }
-
         if (isInvalidNinja(primeiroNinja)) {
             return segundoNinja;
         }
-
         if (isInvalidNinja(segundoNinja)) {
             return primeiroNinja;
-
         }
         if (isSpecialCase(primeiroNinja, "Itachi")) {
             return primeiroNinja;
@@ -30,7 +27,6 @@ public class Batalha {
         if (chakraPrimeiro == chakraSegundo && danoPrimeiro == danoSegundo) {
             return primeiroNinja;
         }
-
         if (chakraPrimeiro == chakraSegundo) {
             return danoPrimeiro > danoSegundo ? primeiroNinja : segundoNinja;
         }
