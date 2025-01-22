@@ -735,6 +735,46 @@ public class NinjaTest {
         Batalha batalha = new Batalha();
 
         batalha.calcularDano(null);
+    }
 
+        @Test
+    public void testCalcularChakraNinjaNull() {
+        Batalha batalha = new Batalha();
+        Ninja ninjaNull = null;
+
+        int resultado = batalha.calcularChakra(ninjaNull);
+
+        Assert.assertEquals(0, resultado);
+    }
+
+    @Test
+    public void testCalcularChakraJutsuNull() {
+        Batalha batalha = new Batalha();
+        Ninja ninja = new Ninja("Naruto", null); 
+        int resultado = batalha.calcularChakra(ninja);
+
+        Assert.assertEquals(0, resultado);
+    }
+
+    @Test
+    public void testCalcularChakraChakraNull() {
+        Batalha batalha = new Batalha();
+        Ninja ninja = new Ninja("Naruto", new Jutsu(10, 20));
+        ninja.setChakra(null); 
+
+        int resultado = batalha.calcularChakra(ninja);
+
+        Assert.assertEquals(0, resultado);
+    }
+
+    @Test
+    public void testCalcularChakraValido() {
+        Batalha batalha = new Batalha();
+        Jutsu rasengan = new Jutsu(30, 50);
+        Ninja ninja = new Ninja("Naruto", rasengan);
+
+        int resultado = batalha.calcularChakra(ninja);
+
+        Assert.assertEquals(70, resultado);
     }
 }
