@@ -1,23 +1,58 @@
 package ecrescer;
 
 public class Batalha {
+
     public Ninja lutar(Ninja primeiroNinja, Ninja segundoNinja) {
-        if (primeiroNinja.getNome().equals("Itachi")) {
+        if (isInvalidNinja(primeiroNinja) && isInvalidNinja(segundoNinja)) {
             return primeiroNinja;
         }
-        if (segundoNinja.getNome().equals("Itachi")) {
+
+        if (isInvalidNinja(primeiroNinja)) {
             return segundoNinja;
         }
 
-        int chakraPrimeiro = primeiroNinja.getJutsu().getChakraConsumido();
-        int chakraSegundo = segundoNinja.getJutsu().getChakraConsumido();
+        if (isInvalidNinja(segundoNinja)) {
+            return primeiroNinja;
 
-        if (chakraPrimeiro == chakraSegundo) {
-            return primeiroNinja.getJutsu().getDano() >= segundoNinja.getJutsu().getDano()
-                    ? primeiroNinja
-                    : segundoNinja;
+        }
+        if (isSpecialCase(primeiroNinja, "Itachi")) {
+            return primeiroNinja;
+        }
+        if (isSpecialCase(segundoNinja, "Itachi")) {
+            return segundoNinja;
         }
 
-        return chakraPrimeiro < chakraSegundo ? primeiroNinja : segundoNinja;
+        int chakraPrimeiro = calcularChakra(primeiroNinja);
+        int chakraSegundo = calcularChakra(segundoNinja);
+        int danoPrimeiro = calcularDano(primeiroNinja);
+        int danoSegundo = calcularDano(segundoNinja);
+
+        if (chakraPrimeiro == chakraSegundo && danoPrimeiro == danoSegundo) {
+            return primeiroNinja;
+        }
+
+        if (chakraPrimeiro == chakraSegundo) {
+            return danoPrimeiro > danoSegundo ? primeiroNinja : segundoNinja;
+        }
+        return chakraPrimeiro > chakraSegundo ? primeiroNinja : segundoNinja;
+    }
+
+    private boolean isInvalidNinja(Ninja ninja) {
+        return ninja == null || ninja.getNome() == null || ninja.getChakra() == null || ninja.getJutsu() == null;
+    }
+
+    private boolean isSpecialCase(Ninja ninja, String specialName) {
+        return specialName.equals(ninja.getNome());
+    }
+
+    public int calcularChakra(Ninja ninja) {
+        if (ninja == null || ninja.getJutsu() == null || ninja.getChakra() == null) {
+            return 0;
+        }
+        return ninja.getChakra() - ninja.getJutsu().getChakraConsumido();
+    }
+
+    public int calcularDano(Ninja ninja) {
+        return ninja.getJutsu() != null ? ninja.getJutsu().getDano() : 0;
     }
 }
